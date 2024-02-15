@@ -11,11 +11,21 @@
         </a>
       </div>
 
-      <div>
-        <a href="/delete_post/<%= @the_post.id %>">
-          Delete post
-        </a>
-      </div>
+      <% if current_user!=nil %>
+        <% if current_user.id == @the_post.user_id  %>
+          <div>
+            <a href="/delete_post/<%= @the_post.id %>">
+              Delete post
+            </a>
+          </div>
+        <% else %>
+          <p>You can't delete someone else's post.</p>
+        <% end %>
+
+      <% else %>
+        <p>Sign in to delete post.</p>
+      <% end %>
+
     </div>
 
     <dl>
@@ -65,7 +75,6 @@
 </div>
 
 <hr>
-
 
 <div>
   <div>
